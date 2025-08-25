@@ -42,28 +42,57 @@ s.n. dasgupta
 ### Display the content of the files
 cat < file1
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cat > file1
+chanchal singhvi
+c.k. shukla
+s.n. dasgupta
+sumit chakrobarty
+```
 
 
 cat < file2
 ## OUTPUT
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cat > file2
+anil aggarwal
+barun sengupta
+c.k. shukla
+lalit chowdury
+s.n. dasgupta
+```
 
 
 # Comparing Files
 cmp file1 file2
 ## OUTPUT
- 
+ ```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cmp file1 file2
+file1 file2 differ: byte 1, line 1
+```
 comm file1 file2
  ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ comm file1 file2
+	anil aggarwal
+	barun sengupta
+chanchal singhvi
+		c.k. shukla
+	lalit chowdury
+		s.n. dasgupta
+sumit chakrobarty
+```
  
 diff file1 file2
 ## OUTPUT
-
-
-#Filters
-
-### Create the following files file11, file22 as follows:
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ diff file1 file2
+1c1,2
+< chanchal singhvi
+---
+> anil aggarwal
+> barun sengupta
+2a4
+> lalit chowdury
+4d5
+< sumit chakrobarty
+```
+create the following files file11, file22 as follows:
 
 cat > file11
 ```
@@ -82,18 +111,31 @@ cat > file22
 
 cut -c1-3 file11
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ 
+cut -c1-3 file11
+Hel
+Thi
+```
 
 
 
 cut -d "|" -f 1 file22
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cut -d "|" -f 1 file22
+1001 
+1002 
+1003 
+```
 
 
 cut -d "|" -f 2 file22
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cut -d "|" -f 2 file22
+ Ram 
+ tom 
+ Joe 
+```
 
 cat < newfile 
 ```
@@ -107,40 +149,73 @@ hello world
  
 grep Hello newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ grep Hello newfile
+Hello world 
+```
 
 
 grep hello newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ grep hello newfile 
+hello world
+```
 
 
 
 grep -v hello newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ grep -v hello newfile 
+Hello world 
+Linux is world number 1 Unix is predecessor
+Linux is best in this
+world
+```
 
 
 cat newfile | grep -i "hello"
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cat newfile | grep -i "hello"
+Hello world 
+hello world
+```
 
 
 
 cat newfile | grep -i -c "hello"
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cat newfile | grep -i -c "hello"
+2
+```
 
 
 
 grep -R ubuntu /etc
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ grep -R ubuntu /etc
+/etc/apparmor.d/abstractions/ubuntu-email:# Users of this abstraction need to include the ubuntu-helpers abstraction
+/etc/apparmor.d/abstractions/ubuntu-email:#   include <abstractions/ubuntu-helpers>
+/etc/apparmor.d/abstractions/ubuntu-email:  include if exists <abstractions/ubuntu-email.d>
+/etc/apparmor.d/abstractions/ubuntu-feed-readers:# Users of this abstraction need to include the ubuntu-helpers abstraction
+/etc/apparmor.d/abstractions/ubuntu-feed-readers:#   include <abstractions/ubuntu-helpers>
+/etc/apparmor.d/abstractions/ubuntu-feed-readers:  include if exists <abstractions/ubuntu-feed-readers.d>
+/etc/apparmor.d/abstractions/ubuntu-bittorrent-clients:# Users of this abstraction need to include the ubuntu-helpers abstraction
+/etc/apparmor.d/abstractions/ubuntu-bittorrent-clients:#   include <abstractions/ubuntu-helpers>
+/etc/apparmor.d/abstractions/ubuntu-bittorrent-clients:  include if exists <abstractions/ubuntu-bittorrent-clients.d>
+/etc/apparmor.d/abstractions/ubuntu-xterm:  include if exists <abstractions/ubuntu-xterm.d>
+/etc/apparmor.d/abstractions/ubuntu-browsers:# Users of this abstraction need to include the ubuntu-helpers abstraction
+/etc/apparmor.d/abstractions/ubuntu-browsers:#   include <abstractions/ubuntu-helpers>
+```
 
 
 grep -w -n world newfile   
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ grep -w -n world newfile  
+1:Hello world 
+2:hello world
+3:Linux is world number 1 Unix is predecessor
+5:world
+```
 
 cat < newfile 
 ```
@@ -163,60 +238,88 @@ Linux is best in this World
  ```
 egrep -w 'Hello|hello' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep -w 'Hello|hello' newfile 
+Hello world 
+hello world
+```
 
 
 egrep -w '(H|h)ello' newfile 
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep -w '(H|h)ello' newfile 
+Hello world 
+hello world
+```
 
 
 egrep -w '(H|h)ell[a-z]' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep -w '(H|h)ell[a-z]' newfile 
+Hello world 
+hello world
+```
 
 
 
 egrep '(^hello)' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep '(^hello)' newfile 
+hello world
+```
 
 
 egrep '(world$)' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep '(world$)' newfile 
+hello world
+world
+```
 
 
 egrep '(World$)' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep '(World$)' newfile ```
 
 egrep '((W|w)orld$)' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep '((W|w)orld$)' newfile 
+hello world
+world
+```
 
 
 egrep '[1-9]' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep '[1-9]' newfile 
+Linux is world number 1 Unix is predecessor
+```
 
 
 egrep 'Linux.*world' newfile 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep 'Linux.*world' newfile 
+Linux is world number 1 Unix is predecessor
+```
 
 egrep 'Linux.*World' newfile 
 ## OUTPUT
-
+```ec-ThinkPad-E15-Gen-4:~/pramisha$ egrep 'Linux.*World' newfile ```
 
 egrep l{2} newfile
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep l{2} newfile
+Hello world 
+hello world
+```
 
 
 egrep 's{1,2}' newfile
 ## OUTPUT 
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ egrep 's{1,2}' newfile
+Linux is world number 1 Unix is predecessor
+Linux is best in this
+```
 
 cat > file23
 ```
@@ -234,80 +337,164 @@ cat > file23
 
 sed -n -e '3p' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n -e '3p' file23
+1002 | tom |  5000 | Admin
+```
 
 
 sed -n -e '$p' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n -e '$p' file23
+1001 | Ram | 10000 | HR
+```
 
 
 sed  -e 's/Ram/Sita/' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed  -e 's/Ram/Sita/' file23
+1001 | Sita | 10000 | HR
+1001 | Sita | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+1003 | Joe |  7000 | Developer
+1001 | Sita | 10000 | HR
+```
 
 
 sed  -e '2s/Ram/Sita/' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed  -e '2s/Ram/Sita/' file23
+1001 | Ram | 10000 | HR
+1001 | Sita | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+1003 | Joe |  7000 | Developer
+1001 | Ram | 10000 | HR
+```
 
 
 sed  '/tom/s/5000/6000/' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed  '/tom/s/5000/6000/' file23
+1001 | Ram | 10000 | HR
+1001 | Ram | 10000 | HR
+1002 | tom |  6000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+1003 | Joe |  7000 | Developer
+1001 | Ram | 10000 | HR
+```
 
 
 sed -n -e '1,5p' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n -e '1,5p' file23
+1001 | Ram | 10000 | HR
+1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+```
 
 
 sed -n -e '2,/Joe/p' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n -e '2,/Joe/p' file23
+1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+```
 
 
 
 sed -n -e '/tom/,/Joe/p' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n -e '/tom/,/Joe/p' file23
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+```
 
 
 seq 10 
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ seq 10 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
 
 
 seq 10 | sed -n '4,6p'
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ seq 10 | sed -n '4,6p'
+4
+5
+6
+```
 
 
 seq 10 | sed -n '2,~4p'
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ seq 10 | sed -n '2,~4p'
+2
+3
+4
+```
 
 
 seq 3 | sed '2a hello'
 ## OUTPUT
-
+```base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ seq 3 | sed '2a hello'
+1
+2
+hello
+3
+```
 
 
 seq 2 | sed '2i hello'
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ seq 2 | sed '2i hello'
+1
+hello
+2
+```
 
 seq 10 | sed '2,9c hello'
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ seq 10 | sed '2,9c hello'
+1
+hello
+10
+```
 
 sed -n '2,4{s/^/$/;p}' file23
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n '2,4{s/^/$/;p}' file23
+$1001 | Ram | 10000 | HR
+$1002 | tom |  5000 | Admin
+$1003 | Joe |  7000 | Developer
+```
 
 
 sed -n '2,4{s/$/*/;p}' file23
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sed -n '2,4{s/$/*/;p}' file23
+1001 | Ram | 10000 | HR*
+1002 | tom |  5000 | Admin*
+1003 | Joe |  7000 | Developer*
+```
 
 #Sorting File content
 cat > file21
@@ -320,7 +507,13 @@ cat > file21
 ``` 
 sort file21
 ## OUTPUT
-
+```(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ sort file21
+1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1004 | Sit |  7000 | Dev
+1005 | Sam |  5000 | HR
+```
 
 cat > file22
 ```
@@ -333,14 +526,27 @@ cat > file22
 ``` 
 uniq file22
 ## OUTPUT
-
+```1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+```
 
 
 #Using tr command
 
 cat file23 | tr [:lower:] [:upper:]
  ## OUTPUT
-
+```1001 | RAM | 10000 | HR
+1001 | RAM | 10000 | HR
+1002 | TOM |  5000 | ADMIN
+1003 | JOE |  7000 | DEVELOPER
+1005 | SAM |  5000 | HR
+1004 | SIT |  7000 | DEV
+1003 | JOE |  7000 | DEVELOPER
+1001 | RAM | 10000 | HR
+```
 cat < urllist.txt
 ```
 www. yahoo. com
@@ -356,24 +562,56 @@ www. mrcet.... com
  ```
 cat urllist.txt | tr -d ' '
  ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cat urllist.txt | tr -d ' '
+www.yahoo.com
+www.google.com
+www.mrcet....com
+```
 
  
 cat urllist.txt | tr -d ' ' | tr -s '.'
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ 
+ 
+cat urllist.txt | tr -d ' ' | tr -s '.'
+www.yahoo.com
+www.google.com
+www.mrcet.com
+```
 
 
 #Backup commands
 tar -cvf backup.tar *
 ## OUTPUT
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ tar -cvf backup.tar *
+tar: backup.tar: file is the archive; not dumped
+casecheck.sh
+file1
+file11
+file2
+file21
+file22
+file23
+herecheck.txt
+ifcompound.sh
+ifnested.sh
+iftest.sh
+my-script.sh
+newfile
+psswdperm.sh
+scriptest.sh
+strcomp.sh
+urllist.txt
+whiletest
+```
 
 
 mkdir backupdir
  
 mv backup.tar backupdir
-
-cd backupdir
  
 tar -tvf backup.tar
 ## OUTPUT
@@ -381,7 +619,28 @@ tar -tvf backup.tar
 
 tar -xvf backup.tar
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ 
+tar -xvf backup.tar
+casecheck.sh
+file1
+file11
+file2
+file21
+file22
+file23
+herecheck.txt
+ifcompound.sh
+ifnested.sh
+iftest.sh
+my-script.sh
+newfile
+psswdperm.sh
+scriptest.sh
+strcomp.sh
+urllist.txt
+whiletest
+```
 gzip backup.tar
 
 ls .gz
@@ -411,6 +670,11 @@ stop
 
 cat herecheck.txt
 ## OUTPUT
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ cat herecheck.txt
+ cant stop
+for this non stop movement
+```
 
 
 cat < scriptest.sh 
@@ -453,7 +717,10 @@ chmod 777 scriptest.sh
  
 ls file1
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ ls file1
+file1
+```
 echo $?
 ## OUTPUT 
 ./one
@@ -461,12 +728,19 @@ bash: ./one: Permission denied
  
 echo $?
 ## OUTPUT 
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ echo $?
+130
+```
  
 abcd
  
 echo $?
  ## OUTPUT
-
+ ```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ echo $?
+0
+```
 
  
 # mis-using string comparisons
@@ -498,6 +772,19 @@ echo "$val1 is less than $val2"
 fi
 ```
 ##OUTPUT
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ 
+cat strcomp.sh 
+\#!/bin/bash
+val1=baseball
+val2=hockey
+if [ $val1 \> $val2 ]
+then
+echo "$val1 is greater than $val2"
+else
+echo "$val1 is less than $val2"
+fi
+```
 
 
 
@@ -532,7 +819,10 @@ fi
  ```
 ./psswdperm.sh
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ ./psswdperm.sh
+bash: ./psswdperm.sh: Permission denied
+```
 # check if with file location
 cat>ifnested.sh 
 ```bash
@@ -578,7 +868,11 @@ fi
 
 ./ifnested.sh 
 ## OUTPUT
-
+```
+(base) sec@sec-ThinkPad-E15-Gen-4:~/pramisha$ 
+./ifnested.sh 
+bash: ./ifnested.sh: Permission denied
+```
 
 
 # using numeric test comparisons
